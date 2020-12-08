@@ -9,19 +9,20 @@ import { faComment, faHeart } from "@fortawesome/free-regular-svg-icons";
 const LikeSection = (props) => {
   // 🔥 Make sure the parent of LikeSection is passing the right props!
   const { likePost, post } = props;
-
+  console.log(likePost);
   return (
     <div>
       <div className="like-section" key="likes-icons-container">
         <div className="like-section-wrapper">
-          <FontAwesomeIcon onClick={likePost} icon={faHeart} />
-        </div>
-        <div className="like-section-wrapper">
-          <FontAwesomeIcon icon={faComment} />
+          <FontAwesomeIcon onClick={() => likePost(post.id)} icon={faHeart} />{" "}
+          {/* just having onClick={likePost(post.id)} makes for an infinite loop. Internet solution called for an anonymous function to make this work!*/}
         </div>
         <p key={post.id} className="like-number">
           {post.likes}
         </p>
+        <div className="like-section-wrapper">
+          <FontAwesomeIcon icon={faComment} />
+        </div>
       </div>
     </div>
   );
